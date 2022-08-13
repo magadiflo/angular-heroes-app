@@ -5,6 +5,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 
+import { AppRoutingModule } from './app-routing.module';
+
 //* Como es un componente así sencillo, no le creamos su módulo
 import { ErrorPageComponent } from './shared/error-page/error-page.component';
 
@@ -15,7 +17,8 @@ import { ErrorPageComponent } from './shared/error-page/error-page.component';
   ],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
