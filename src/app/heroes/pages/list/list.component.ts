@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { HeroesService } from '../../services/heroes.service';
+
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
@@ -8,9 +10,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListComponent implements OnInit {
 
-  constructor() { }
+  constructor(private heroesService: HeroesService) { }
 
   ngOnInit(): void {
+    this.heroesService.getHeroes()
+      .subscribe(resp => console.log(resp));
   }
 
 }
