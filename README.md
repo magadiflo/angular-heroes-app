@@ -17,8 +17,21 @@ npm i -s @angular/flex-layout @angular/cdk
 ```
 
 # Backend - JSON Server  
-Se trabajó en el lado de desarrollo para el backend con JSON Server: https://www.npmjs.com/package/json-server  
-Iniciar servidor json-server: 
+Se trabajó en el lado de desarrollo para el backend con JSON Server: 
+```
+https://www.npmjs.com/package/json-server  
+
+```
+
+INSTALACIÓN. Abrir un cmd en modo administrador. Se instalará de manera global (-g)
+```
+npm install -g json-server
+```
+
+Datos a usar como BD [db.json](https://gist.github.com/Klerith/403c91e61d3c87284beb0dd138619958)
+
+
+Iniciar servidor json-server, abrimos un cd y nos dirigimos al directorio donde está el db.json y ejecutamos:
 ```
 json-server --watch db.json
 ```
