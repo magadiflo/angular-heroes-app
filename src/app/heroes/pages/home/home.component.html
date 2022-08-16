@@ -1,10 +1,35 @@
 <mat-sidenav-container fullscreen>
-    <mat-sidenav #sideNav>
-        <h1>Sidenav</h1>
+    <mat-sidenav #sideNav mode="push">
+        <mat-toolbar color="accent">
+            <span>Menu</span>
+            <span class="spacer"></span>
+            <button type="button" mat-icon-button (click)="sideNav.toggle()" aria-label="Menu button">
+                <mat-icon>menu</mat-icon>
+            </button>
+        </mat-toolbar>
+        <mat-nav-list>
+            <a [routerLink]="['./list']" mat-list-item (click)="sideNav.toggle()">
+                <mat-icon mat-list-icon>dashboard</mat-icon> <span>Hero list</span>
+            </a>
+            <a [routerLink]="['./add']" mat-list-item (click)="sideNav.toggle()">
+                <mat-icon mat-list-icon>note_add</mat-icon> <span>Add hero</span>
+            </a>
+            <a [routerLink]="['./search']" mat-list-item (click)="sideNav.toggle()">
+                <mat-icon mat-list-icon>search</mat-icon> <span>Search hero</span>
+            </a>
+        </mat-nav-list>
     </mat-sidenav>
     <mat-toolbar>
-        <button type="button" mat-icon-button (click)="sideNav.toggle()">
+        <button type="button" mat-icon-button (click)="sideNav.toggle()" aria-label="Menu button">
             <mat-icon>menu</mat-icon>
         </button>
+        <span class="spacer"></span>
+        <button type="button" mat-mini-fab color="warn" aria-label="Logout">
+            <mat-icon>logout</mat-icon>
+        </button>
     </mat-toolbar>
+
+    <div class="container">
+        <router-outlet></router-outlet>
+    </div>
 </mat-sidenav-container>
