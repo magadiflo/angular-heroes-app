@@ -10,10 +10,10 @@
         <p><strong>Characters</strong> {{ hero.characters }}</p>
     </mat-card-content>
     <mat-card-actions>
-        <button type="button" mat-button color="warn">
+        <button type="button" mat-button color="warn" [routerLink]="['/heroes', hero.id]">
             <mat-icon>sticky_note_2</mat-icon> Read more
         </button>
-        <button type="button" mat-button color="accent">
+        <button type="button" mat-button color="accent" [routerLink]="['/heroes', 'edit', hero.id]">
             <mat-icon>mode_edit</mat-icon> Edit
         </button>
     </mat-card-actions>
