@@ -10,6 +10,7 @@ import { SearchComponent } from './pages/search/search.component';
 import { HeroComponent } from './pages/hero/hero.component';
 import { HomeComponent } from './pages/home/home.component';
 import { ListComponent } from './pages/list/list.component';
+import { HeroCardComponent } from './components/hero-card/hero-card.component';
 
 /**
  ** NO VAMOS A EXPORTAR NADA que no sea necesario ya que 
@@ -26,6 +27,7 @@ import { ListComponent } from './pages/list/list.component';
     HeroComponent,
     HomeComponent,
     ListComponent,
+    HeroCardComponent,
   ],
   imports: [
     CommonModule,
