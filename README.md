@@ -16,6 +16,9 @@ Instalación
 npm i -s @angular/flex-layout @angular/cdk
 ```
 
+# Íconos para Angular Material
+Ir a esta dirección [fonts.google](https://fonts.google.com/icons?selected=Material+Icons:bookmark)
+
 # Backend - JSON Server  
 Se trabajó en el lado de desarrollo para el backend con JSON Server: 
 ```
