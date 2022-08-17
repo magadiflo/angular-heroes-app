@@ -11,6 +11,7 @@ import { HeroComponent } from './pages/hero/hero.component';
 import { HomeComponent } from './pages/home/home.component';
 import { ListComponent } from './pages/list/list.component';
 import { HeroCardComponent } from './components/hero-card/hero-card.component';
+import { ImagenPipe } from './pipes/imagen.pipe';
 
 /**
  ** NO VAMOS A EXPORTAR NADA que no sea necesario ya que 
@@ -28,6 +29,7 @@ import { HeroCardComponent } from './components/hero-card/hero-card.component';
     HomeComponent,
     ListComponent,
     HeroCardComponent,
+    ImagenPipe,
   ],
   imports: [
     CommonModule,
