@@ -1,8 +1,8 @@
 <h1>Heroes List</h1>
 <mat-divider></mat-divider>
-<div fxLayout="row wrap">
-    <div fxFlex="20">
-        <mat-card *ngFor="let hero of heroes">
+<div fxLayout="row wrap" fxLayoutAlign="center" >
+    <div fxFlex.xs="100" fxFlex.sm="50" fxFlex.md="30" fxFlex.lg="25" fxFlex.xl="15" *ngFor="let hero of heroes">
+        <mat-card>
             <mat-card-header>
                 <mat-card-title>{{ hero.superhero }}</mat-card-title>
                 <mat-card-subtitle>{{ hero.alter_ego }}</mat-card-subtitle>
@@ -17,7 +17,7 @@
                 <button type="button" mat-button color="warn">
                     <mat-icon>sticky_note_2</mat-icon> Read more
                 </button>
-                <button type="button" mat-button color="info">
+                <button type="button" mat-button color="accent">
                     <mat-icon>mode_edit</mat-icon> Edit
                 </button>
             </mat-card-actions>
