@@ -1,8 +1,27 @@
-<mat-grid-list cols="1" *ngIf="!hero; else divHero">
-    <mat-grid-tile>
-        <mat-spinner></mat-spinner>
-    </mat-grid-tile>
-</mat-grid-list>
-<ng-template #divHero>
-    Hola mundo {{ hero.characters }}
-</ng-template>
+<ng-container *ngIf="(heroState$ | async) as state" [ngSwitch]="state.appState">
+    <ng-container *ngSwitchCase="'APP_LOADING'">
+        <mat-grid-list cols="1" rowHeight="80vh">
+            <mat-grid-tile>
+                <mat-spinner></mat-spinner>
+            </mat-grid-tile>
+        </mat-grid-list>
+    </ng-container>
+    <ng-container *ngSwitchCase="'APP_LOADED'">
+        {{ state.appData | json }}
+    </ng-container>
+    <ng-container *ngSwitchCase="'APP_ERROR'">
+        <mat-grid-list cols="1" rowHeight="80vh">
+            <mat-grid-tile>
+                <div class="text-center">
+                    <div class="text-danger text-size-50 mb-35">
+                        {{ state.error?.status }} {{ state.error?.statusText }}
+                    </div>
+                    <button type="button" mat-raised-button color="warn" [routerLink]="['/heroes', 'list']"
+                        aria-label="Menu button">
+                        <mat-icon mat-list-icon>undo</mat-icon> Return to hero list
+                    </button>
+                </div>
+            </mat-grid-tile>
+        </mat-grid-list>
+    </ng-container>
+</ng-container>

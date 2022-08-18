@@ -11,3 +11,23 @@ body {
 .spacer {
     flex: 1 1 auto;
 }
+
+.text-danger {
+    color: rgb(230, 18, 60);
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-size-50 {
+    font-size: 50px;
+}
+
+.m-25 {
+    margin: 25px;
+}
+
+.mb-35 {
+    margin: 35px;
+}

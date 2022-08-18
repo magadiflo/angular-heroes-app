@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
+import { startWith, of, map, catchError, Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 
 import { Hero } from '../../interfaces/heroes.interface';
+import { AppResponse } from '../../interfaces/app-response.interface';
 import { HeroesService } from '../../services/heroes.service';
 
 @Component({
@@ -13,20 +16,20 @@ import { HeroesService } from '../../services/heroes.service';
 })
 export class HeroComponent implements OnInit {
 
-  hero!: Hero;
+  heroState$!: Observable<AppResponse>;
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private router: Router,
     private heroesService: HeroesService) { }
 
   ngOnInit(): void {
-    this.activatedRoute.params
-      .pipe(switchMap(({ id }) => this.heroesService.getHeroById(id)))
-      .subscribe({
-        next: hero => this.hero = hero,
-        error: err => this.router.navigate(['/heroes', 'list'])
-      });
+    this.heroState$ = this.activatedRoute.params
+      .pipe(
+        switchMap(({ id }) => this.heroesService.getHeroById(id)),
+        map((hero: Hero) => ({ appState: 'APP_LOADED', appData: hero })),
+        startWith({ appState: 'APP_LOADING' }),
+        catchError((error: HttpErrorResponse) => of({ appState: 'APP_ERROR', error }))
+      );
   }
 
 }
