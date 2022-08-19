@@ -12,6 +12,9 @@ import { HeroesService } from '../../services/heroes.service';
   selector: 'app-hero',
   templateUrl: './hero.component.html',
   styles: [
+    `img {
+      width: 100%;
+    }`
   ]
 })
 export class HeroComponent implements OnInit {
