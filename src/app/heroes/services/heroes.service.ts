@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { environment } from '../../../environments/environment';
@@ -20,6 +20,13 @@ export class HeroesService {
 
   getHeroById(id: string): Observable<Hero> {
     return this.http.get<Hero>(`${this.baseUrl}/heroes/${id}`);
+  }
+
+  getSuggestions(term: string): Observable<Hero[]> {
+    const params = new HttpParams()
+      .set('q', term)
+      .set('_limit', 6);
+    return this.http.get<Hero[]>(`${this.baseUrl}/heroes`, { params });
   }
 
 }
