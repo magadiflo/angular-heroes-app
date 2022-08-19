@@ -3,7 +3,7 @@
         <h1>Hero seeker</h1>
         <mat-divider></mat-divider>
     </div>
-    <div>
+    <div fxLayout="column">
         <h3>Seeker</h3>
         <mat-form-field>
             <input type="text" placeholder="Search" matInput [matAutocomplete]="auto" [(ngModel)]="term"
@@ -12,8 +12,15 @@
                 <mat-option *ngFor="let hero of heroes" [value]="hero">
                     {{ hero.superhero }}
                 </mat-option>
+                <mat-option value="" *ngIf="term.trim().length > 0 && heroes.length === 0">No results found</mat-option>
             </mat-autocomplete>
         </mat-form-field>
     </div>
 </div>
-<pre>{{ heroSelected | json }}</pre>
+<div *ngIf="heroSelected">
+    <div fxLayout="row wrap" fxLayoutAlign="center">
+        <div fxFlex.xs="100" fxFlex.sm="50" fxFlex.md="30" fxFlex.lg="25" fxFlex.xl="15">
+            <app-hero-card [hero]="heroSelected"></app-hero-card>
+        </div>
+    </div>
+</div>

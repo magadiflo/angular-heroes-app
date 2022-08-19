@@ -15,7 +15,7 @@ export class SearchComponent implements OnInit {
 
   term: string = '';
   heroes: Hero[] = [];
-  heroSelected!: Hero;
+  heroSelected: Hero | undefined;
 
   constructor(private heroService: HeroesService) { }
 
@@ -23,11 +23,17 @@ export class SearchComponent implements OnInit {
   }
 
   searching(): void {
-    this.heroService.getSuggestions(this.term)
+    this.heroes = [];
+    if (this.term.trim().length === 0) return;
+    this.heroService.getSuggestions(this.term.trim())
       .subscribe(heroes => this.heroes = heroes);
   }
 
   optionSelected(value: MatAutocompleteSelectedEvent): void {
+    if (!value.option.value) {
+      this.heroSelected = undefined;
+      return;
+    }
     const hero: Hero = value.option.value;
     this.term = hero.superhero;
     this.heroService.getHeroById(hero.id!)
