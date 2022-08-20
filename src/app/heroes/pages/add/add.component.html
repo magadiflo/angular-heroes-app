@@ -1,30 +1,30 @@
 <h1>New Hero</h1>
-<small>asdf </small>
+<small>{{ hero.superhero }}</small>
 <mat-divider></mat-divider>
 
 <div fxLayout="row wrap" fxLayoutGap="40px">
     <div fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="45" fxFlex.lg="45" fxFlex.xl="45" fxLayout="column">
-        <div fxLayout="row" fxLayoutGap="20px">
-            <mat-form-field fxFlex="100">
+        <div fxLayout="row" fxLayoutGap.xs="0px" fxLayoutGap="20px" fxLayout.xs="column">
+            <mat-form-field fxFlex="100" fxLayout.xs="column">
                 <mat-label>Super Hero</mat-label>
-                <input type="text" matInput required aria-label="Input super hero">
+                <input type="text" matInput required [(ngModel)]="hero.superhero" aria-label="Input super hero">
             </mat-form-field>
             <mat-form-field fxFlex="100">
                 <mat-label>Alter Ego</mat-label>
-                <input type="text" matInput required aria-label="Input alter ego">
+                <input type="text" matInput required [(ngModel)]="hero.alter_ego" aria-label="Input alter ego">
             </mat-form-field>
         </div>
         <mat-form-field>
             <mat-label>First Appearance</mat-label>
-            <input type="text" matInput required aria-label="Input first appearance">
+            <input type="text" matInput required [(ngModel)]="hero.first_appearance" aria-label="Input first appearance">
         </mat-form-field>
         <mat-form-field>
             <mat-label>Characters</mat-label>
-            <input type="text" matInput required aria-label="Input characters">
+            <input type="text" matInput required [(ngModel)]="hero.characters" aria-label="Input characters">
         </mat-form-field>
         <mat-form-field>
             <mat-label>Publisher</mat-label>
-            <mat-select>
+            <mat-select [(ngModel)]="hero.publisher" required>
                 <mat-option [value]="publisher" *ngFor="let publisher of publishers">
                     {{ publisher }}
                 </mat-option>
@@ -32,9 +32,9 @@
         </mat-form-field>
         <mat-form-field>
             <mat-label>Photo</mat-label>
-            <input type="url" matInput required aria-label="Input characters">
+            <input type="url" matInput [(ngModel)]="hero.alt_img" required aria-label="Input characters">
         </mat-form-field>
-        <button type="button" mat-raised-button color="warn">
+        <button type="button" mat-raised-button color="warn" (click)="save()">
             <mat-icon>save</mat-icon> Guardar
         </button>
     </div>

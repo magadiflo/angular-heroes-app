@@ -29,4 +29,8 @@ export class HeroesService {
     return this.http.get<Hero[]>(`${this.baseUrl}/heroes`, { params });
   }
 
+  saveHero(hero: Hero): Observable<Hero> {
+    return this.http.post<Hero>(`${this.baseUrl}/heroes`, hero);
+  }
+
 }
