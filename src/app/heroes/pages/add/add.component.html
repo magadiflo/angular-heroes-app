@@ -2,7 +2,7 @@
 <small>{{ hero.superhero }}</small>
 <mat-divider></mat-divider>
 
-<div fxLayout="row wrap" fxLayoutGap="40px">
+<div fxLayout="row wrap" fxLayoutGap="40px" class="m-25">
     <div fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="45" fxFlex.lg="45" fxFlex.xl="45" fxLayout="column">
         <div fxLayout="row" fxLayoutGap.xs="0px" fxLayoutGap="20px" fxLayout.xs="column">
             <mat-form-field fxFlex="100" fxLayout.xs="column">
@@ -38,7 +38,7 @@
             <mat-icon>save</mat-icon> Guardar
         </button>
     </div>
-    <div fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="45" fxFlex.lg="45" fxFlex.xl="45">
+    <div fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="45" fxFlex.lg="45" fxFlex.xl="45" class="m-25">
         <img [src]="hero | imagen" alt="Hero image">
     </div>
 </div>
