@@ -43,13 +43,22 @@ export class AddComponent implements OnInit {
     if (this.hero.superhero.trim().length === 0) return;
     if (this.hero.id) {
       this.heroesService.updateHero(this.hero)
-        .subscribe(hero => this.hero = hero);
+        .subscribe(hero => {
+          console.log('actualizando....', this.hero);
+          //this.hero = hero; //TODO: verificar esto luego (Con esto estaría mostrándose la imagen ya que el this.hero obtendría los datos devueltos por el servicio)
+        });
+
     } else {
       this.heroesService.saveHero(this.hero)
         .subscribe(hero => {
           this.router.navigate(['/heroes', 'edit', hero.id]);
         });
     }
+  }
+
+  remove(): void {
+    this.heroesService.removeHero(this.hero.id!)
+      .subscribe(resp => this.router.navigate(['/heroes', 'list']));
   }
 
 }

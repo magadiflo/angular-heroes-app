@@ -16,7 +16,8 @@
         </div>
         <mat-form-field>
             <mat-label>First Appearance</mat-label>
-            <input type="text" matInput required [(ngModel)]="hero.first_appearance" aria-label="Input first appearance">
+            <input type="text" matInput required [(ngModel)]="hero.first_appearance"
+                aria-label="Input first appearance">
         </mat-form-field>
         <mat-form-field>
             <mat-label>Characters</mat-label>
@@ -34,9 +35,15 @@
             <mat-label>Photo</mat-label>
             <input type="url" matInput [(ngModel)]="hero.alt_img" required aria-label="Input characters">
         </mat-form-field>
-        <button type="button" mat-raised-button color="warn" (click)="save()">
-            <mat-icon>save</mat-icon> Guardar
-        </button>
+        <div fxLayout>
+            <button type="button" mat-raised-button color="primary" (click)="save()">
+                <mat-icon>save</mat-icon> Save
+            </button>
+            <span class="spacer"></span>
+            <button type="button" *ngIf="hero.id" mat-raised-button color="warn" (click)="remove()">
+                <mat-icon>remove</mat-icon> Delete
+            </button>
+        </div>
     </div>
     <div fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="45" fxFlex.lg="45" fxFlex.xl="45" class="m-25">
         <img [src]="hero | imagen" alt="Hero image">
