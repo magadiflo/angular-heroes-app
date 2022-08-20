@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { Hero, Publisher } from '../../interfaces/heroes.interface';
+
 @Component({
   selector: 'app-add',
   templateUrl: './add.component.html',
@@ -7,6 +9,10 @@ import { Component, OnInit } from '@angular/core';
   ]
 })
 export class AddComponent implements OnInit {
+
+  publishers: Publisher[] = [Publisher.DCComics, Publisher.MarvelComics];
+  hero!: Hero;
+
 
   constructor() { }
 

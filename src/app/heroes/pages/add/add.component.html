@@ -1,1 +1,44 @@
-<p>add works!</p>
+<h1>New Hero</h1>
+<small>asdf </small>
+<mat-divider></mat-divider>
+
+<div fxLayout="row wrap" fxLayoutGap="40px">
+    <div fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="45" fxFlex.lg="45" fxFlex.xl="45" fxLayout="column">
+        <div fxLayout="row" fxLayoutGap="20px">
+            <mat-form-field fxFlex="100">
+                <mat-label>Super Hero</mat-label>
+                <input type="text" matInput required aria-label="Input super hero">
+            </mat-form-field>
+            <mat-form-field fxFlex="100">
+                <mat-label>Alter Ego</mat-label>
+                <input type="text" matInput required aria-label="Input alter ego">
+            </mat-form-field>
+        </div>
+        <mat-form-field>
+            <mat-label>First Appearance</mat-label>
+            <input type="text" matInput required aria-label="Input first appearance">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Characters</mat-label>
+            <input type="text" matInput required aria-label="Input characters">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Publisher</mat-label>
+            <mat-select>
+                <mat-option [value]="publisher" *ngFor="let publisher of publishers">
+                    {{ publisher }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Photo</mat-label>
+            <input type="url" matInput required aria-label="Input characters">
+        </mat-form-field>
+        <button type="button" mat-raised-button color="warn">
+            <mat-icon>save</mat-icon> Guardar
+        </button>
+    </div>
+    <div fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="45" fxFlex.lg="45" fxFlex.xl="45">
+        <img [src]="hero | imagen" alt="Hero image">
+    </div>
+</div>
