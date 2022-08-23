@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { switchMap } from 'rxjs/operators';
 
 import { Hero, Publisher } from '../../interfaces/heroes.interface';
@@ -28,7 +29,8 @@ export class AddComponent implements OnInit {
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private heroesService: HeroesService) { }
+    private heroesService: HeroesService,
+    private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     if (!this.router.url.includes('edit')) return;
@@ -44,13 +46,14 @@ export class AddComponent implements OnInit {
     if (this.hero.id) {
       this.heroesService.updateHero(this.hero)
         .subscribe(hero => {
-          console.log('actualizando....', this.hero);
           this.hero = hero;
+          this.showSnackBar('Register updated successfully');
         });
 
     } else {
       this.heroesService.saveHero(this.hero)
         .subscribe(hero => {
+          this.showSnackBar('Register created successfully');
           this.router.navigate(['/heroes', 'edit', hero.id]);
         });
     }
@@ -59,6 +62,12 @@ export class AddComponent implements OnInit {
   remove(): void {
     this.heroesService.removeHero(this.hero.id!)
       .subscribe(resp => this.router.navigate(['/heroes', 'list']));
+  }
+
+  private showSnackBar(message: string): void {
+    this.snackBar.open(message, 'Close', {
+      duration: 2500
+    });
   }
 
 }
