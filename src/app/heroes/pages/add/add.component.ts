@@ -45,7 +45,7 @@ export class AddComponent implements OnInit {
       this.heroesService.updateHero(this.hero)
         .subscribe(hero => {
           console.log('actualizando....', this.hero);
-          //this.hero = hero; //TODO: verificar esto luego (Con esto estaría mostrándose la imagen ya que el this.hero obtendría los datos devueltos por el servicio)
+          this.hero = hero;
         });
 
     } else {
