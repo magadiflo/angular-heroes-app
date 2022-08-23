@@ -1,4 +1,4 @@
-<h1>New Hero</h1>
+<h1>{{ hero.id ? 'Edit Hero' : 'New Hero' }}</h1>
 <small>{{ hero.superhero }}</small>
 <mat-divider></mat-divider>
 
@@ -37,7 +37,7 @@
         </mat-form-field>
         <div fxLayout>
             <button type="button" mat-raised-button color="primary" (click)="save()">
-                <mat-icon>save</mat-icon> Save
+                <mat-icon>save</mat-icon> {{ hero.id ? 'Update' : 'Save' }}
             </button>
             <span class="spacer"></span>
             <button type="button" *ngIf="hero.id" mat-raised-button color="warn" (click)="remove()">
