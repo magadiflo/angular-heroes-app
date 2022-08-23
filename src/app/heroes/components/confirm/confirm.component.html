@@ -1,10 +1,10 @@
 <div class="container-confirm">
     <h1 mat-dialog-title>Delete file</h1>
     <div mat-dialog-content>
-        Would you like to delete HERO?
+        Would you like to delete {{ this.hero.superhero }}?
     </div>
     <div mat-dialog-actions>
         <button type="button" (click)="delete()" mat-button color="warn">Yes, of course</button>
-        <button type="button" (click)="cancel()" mat-button >Cancel</button>
+        <button type="button" (click)="cancel()" mat-button>Cancel</button>
     </div>
 </div>

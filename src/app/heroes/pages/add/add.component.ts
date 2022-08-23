@@ -7,6 +7,7 @@ import { switchMap } from 'rxjs/operators';
 import { Hero, Publisher } from '../../interfaces/heroes.interface';
 import { HeroesService } from '../../services/heroes.service';
 import { ConfirmComponent } from '../../components/confirm/confirm.component';
+import { throwError } from 'rxjs';
 
 @Component({
   selector: 'app-add',
@@ -63,11 +64,35 @@ export class AddComponent implements OnInit {
   }
 
   remove(): void {
-    this.dialog.open(ConfirmComponent, { width:'300px' });
+    const dialog = this.dialog.open(ConfirmComponent, {
+      width: '300px',
+      data: { ...this.hero } //* Usando el operador Spread, le enviamos una copia de todo el objeto: hero, así nos aseguramos de que nada se va a modificar por referencia de ese objeto original
+    });
 
-    return;
-    this.heroesService.removeHero(this.hero.id!)
-      .subscribe(resp => this.router.navigate(['/heroes', 'list']));
+    //* Solución original del curso
+    // dialog.afterClosed()
+    //   .subscribe(resp => {
+    //     if (resp) {
+    //       this.heroesService.removeHero(this.hero.id!)
+    //         .subscribe(resp => {
+    //           this.showSnackBar('Register deleted successfully');
+    //           this.router.navigate(['/heroes', 'list'])
+    //         });
+    //     }
+    //   });
+
+    //* Solución implementada por Martín :')
+    dialog.afterClosed()
+      .pipe(
+        switchMap(resp => resp ? this.heroesService.removeHero(this.hero.id!) : throwError(() => new Error('Elimination canceled')))
+      )
+      .subscribe({
+        next: resp => {
+          this.showSnackBar('Register deleted successfully');
+          this.router.navigate(['/heroes', 'list']);
+        },
+        error: err => console.log(err.message)
+      });
   }
 
   private showSnackBar(message: string): void {
