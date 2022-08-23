@@ -2,12 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
+import { HttpErrorResponse } from '@angular/common/http';
 import { switchMap } from 'rxjs/operators';
+import { throwError } from 'rxjs';
 
 import { Hero, Publisher } from '../../interfaces/heroes.interface';
 import { HeroesService } from '../../services/heroes.service';
 import { ConfirmComponent } from '../../components/confirm/confirm.component';
-import { throwError } from 'rxjs';
 
 @Component({
   selector: 'app-add',
@@ -23,6 +24,7 @@ export class AddComponent implements OnInit {
 
   publishers: Publisher[] = [Publisher.DCComics, Publisher.MarvelComics];
   hero: Hero = this.emptyHero;
+  errorHero: HttpErrorResponse | undefined = undefined;
 
   private get emptyHero(): Hero {
     return { id: '', superhero: '', publisher: Publisher.DCComics, alter_ego: '', first_appearance: '', characters: '', alt_img: '' };
@@ -42,7 +44,10 @@ export class AddComponent implements OnInit {
       .pipe(
         switchMap(({ id }) => this.heroesService.getHeroById(id))
       )
-      .subscribe(hero => this.hero = hero);
+      .subscribe({
+        next: hero => this.hero = hero,
+        error: (err: HttpErrorResponse) => this.errorHero = err //* Es otra forma de solucionarlo. Lo podríamos haber realizado como en el hero.component.ts utilizando el observable directamente en el html con el pipe | async
+      });
   }
 
   save(): void {
