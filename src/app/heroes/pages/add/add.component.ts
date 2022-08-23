@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
 import { switchMap } from 'rxjs/operators';
 
 import { Hero, Publisher } from '../../interfaces/heroes.interface';
 import { HeroesService } from '../../services/heroes.service';
+import { ConfirmComponent } from '../../components/confirm/confirm.component';
 
 @Component({
   selector: 'app-add',
@@ -30,7 +32,8 @@ export class AddComponent implements OnInit {
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private heroesService: HeroesService,
-    private snackBar: MatSnackBar) { }
+    private snackBar: MatSnackBar,
+    public dialog: MatDialog) { }
 
   ngOnInit(): void {
     if (!this.router.url.includes('edit')) return;
@@ -60,6 +63,9 @@ export class AddComponent implements OnInit {
   }
 
   remove(): void {
+    this.dialog.open(ConfirmComponent, { width:'300px' });
+
+    return;
     this.heroesService.removeHero(this.hero.id!)
       .subscribe(resp => this.router.navigate(['/heroes', 'list']));
   }

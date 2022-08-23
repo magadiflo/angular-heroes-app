@@ -13,6 +13,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { ListComponent } from './pages/list/list.component';
 import { HeroCardComponent } from './components/hero-card/hero-card.component';
 import { ImagenPipe } from './pipes/imagen.pipe';
+import { ConfirmComponent } from './components/confirm/confirm.component';
 
 /**
  ** NO VAMOS A EXPORTAR NADA que no sea necesario ya que 
@@ -31,6 +32,7 @@ import { ImagenPipe } from './pipes/imagen.pipe';
     ListComponent,
     HeroCardComponent,
     ImagenPipe,
+    ConfirmComponent,
   ],
   imports: [
     CommonModule,
