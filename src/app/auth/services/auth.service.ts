@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 
 import { environment } from '../../../environments/environment';
 import { Auth } from '../interfaces/auth.interface';
@@ -11,10 +11,18 @@ import { Auth } from '../interfaces/auth.interface';
 export class AuthService {
 
   private readonly baseUrl: string = environment.baseUrl;
+  private _auth: Auth | undefined;
+
+  get auth(): Auth {
+    return { ...this._auth! }; //* Lo desestructuramos para asegurarnos de que no se cambiará accidentalmente por referencia
+  }
 
   constructor(private http: HttpClient) { }
 
   login(): Observable<Auth> {
-    return this.http.get<Auth>(`${this.baseUrl}/usuarios/1`);
+    return this.http.get<Auth>(`${this.baseUrl}/usuarios/1`)
+      .pipe(
+        tap(auth => this._auth = auth)
+      );
   }
 }
