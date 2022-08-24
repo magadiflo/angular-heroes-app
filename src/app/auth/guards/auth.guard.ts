@@ -7,15 +7,17 @@ import { AuthService } from '../services/auth.service';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuard implements CanLoad {
+export class AuthGuard implements CanLoad, CanActivate {
 
   constructor(private authService: AuthService) { }
 
-  // canActivate(
-  //   route: ActivatedRouteSnapshot,
-  //   state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-  //   return true;
-  // }
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
+    if (this.authService.auth.id) {
+      return true;
+    }
+    console.log('Bloqueado por el AuthGuard - CanActivate()');
+    return false;
+  }
 
   /**
    ** canLoad(...), permite saber si se puede cargar un módulo.
@@ -29,7 +31,7 @@ export class AuthGuard implements CanLoad {
     if (this.authService.auth.id) {
       return true;
     }
-    console.log('Bloqueado por el AuthGuard');
+    console.log('Bloqueado por el AuthGuard - CanLoad()');
     return false;
   }
 
