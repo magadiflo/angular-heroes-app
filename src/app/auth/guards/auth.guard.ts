@@ -18,7 +18,7 @@ export class AuthGuard implements CanLoad, CanActivate {
     //   return true;
     // }
     // return false;
-    console.log('Bloqueado por el AuthGuard - CanActivate()');
+    console.log('Pasó por el AuthGuard - CanActivate()');
     return this._isAuthenticated();
   }
 
@@ -35,7 +35,7 @@ export class AuthGuard implements CanLoad, CanActivate {
     //   return true;
     // }
     // return false;
-    console.log('Bloqueado por el AuthGuard - CanLoad()');
+    console.log('Pasó por el AuthGuard - CanLoad()');
     return this._isAuthenticated();
   }
 
